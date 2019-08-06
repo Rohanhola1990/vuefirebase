@@ -24,6 +24,21 @@
                 </router-link>
             </li>
         </ul>
+
+        <h2>Navigation Controls</h2>
+        <ul>
+            <li>
+                <button @click="goBack">
+                    GO Back
+                </button>
+                <button @click="goHome">
+                    Redirect to Home
+                </button>
+                <button @click="goForward">
+                    GO Forward
+                </button>
+            </li>
+        </ul>
     </div>
 </template>
 <script>
@@ -32,6 +47,17 @@ export default {
     data() {
         return {
             userIds: ['1', '2', '3', '4']
+        }
+    },
+    methods: {
+        goHome() {
+            this.$router.push({name: 'Home'}) //NOT $route
+        },
+        goBack() {
+            this.$router.go(-1)
+        },
+        goForward() {
+            this.$router.go(1)
         }
     }
 }
@@ -43,9 +69,13 @@ export default {
         padding: 0;
     }
     li {
+        margin: 0 10px;
         display: inline-block;
     }
     a {
         color: #42b983;
+    }
+    .router-link-exact-active {
+        color: purple;
     }
 </style>
